@@ -1,20 +1,50 @@
 package raisetech.student.management;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
 public class Application {
 
+  private String name = "Enami Kouji";
+  private String age = "37";
+
+  private Map<String, String> student = new HashMap<>();
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-  @GetMapping("/hello")
-  public String hello() {
-    return "Hello, World!";
+  @GetMapping("/studentInfo")
+  public String getStudentInfo() {
+    return name + " " + age + "歳";
+  }
+
+  @PostMapping("/studentInfo")
+  public void setStudentInfo(String name, String age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  @PostMapping("/studentName")
+  public void updateStudentName(String name) {
+    this.name = name;
+  }
+
+  @PostMapping("/studentMap")
+  public void updateStudentMap(@RequestParam Map<String, String> student) {
+    this.student.putAll(student);
+  }
+
+  @GetMapping("/studentMap")
+  public Map<String, String> getStudentMap() {
+    return student;
   }
 }
