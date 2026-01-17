@@ -16,7 +16,7 @@ public class Application {
   private String name = "Enami Kouji";
   private String age = "37";
 
-  private Map<String, String> student = new HashMap<>(); //HashMapに変更
+  private Map<String, String> student = new HashMap<>();
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
